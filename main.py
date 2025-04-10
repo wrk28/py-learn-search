@@ -16,7 +16,7 @@ def search_keywords(link: str, keywords: list) -> bool:
         if keyword in article_text:
             return True
 
-def main():
+def main(keywords, url, habr_url):
     response = requests.get(f'{url}')
     root = bs4.BeautifulSoup(response.text, features='lxml')
     articles = root.find_all('article', attrs={'class': 'tm-articles-list__item'})
@@ -33,4 +33,4 @@ def main():
             print(f'{date_str} - {title} - {link}')
 
 if __name__ == '__main__':
-    main()
+    main(keywords, url, habr_url)
